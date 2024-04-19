@@ -1,9 +1,10 @@
-FROM php:8.2-apache
-MAINTAINER Julian Xhokaxhiu <info at julianxhokaxhiu dot com>
+FROM php:8.2.17-apache
+#MAINTAINER Julian Xhokaxhiu <info at julianxhokaxhiu dot com>
 
 # internal variables
 ENV HTML_DIR /var/www/html
-ENV FULL_BUILDS_DIR $HTML_DIR/builds/full
+ENV AXP_DIR /var/www/html/axp
+ENV FULL_BUILDS_DIR $AXP_DIR/builds/full
 
 # set the working directory
 WORKDIR $HTML_DIR
