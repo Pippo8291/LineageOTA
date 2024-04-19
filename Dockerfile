@@ -7,7 +7,7 @@ ENV AXP_DIR /var/www/html/axp
 ENV FULL_BUILDS_DIR $AXP_DIR/builds/full
 
 # set the working directory
-WORKDIR $HTML_DIR
+WORKDIR $AXP_DIR
 
 # enable mod_rewrite
 RUN a2enmod rewrite
@@ -40,13 +40,13 @@ ADD https://getcomposer.org/composer.phar /usr/local/bin/composer
 RUN chmod 0755 /usr/local/bin/composer
 
 # add all the project files
-COPY . $HTML_DIR
+COPY . $AXP_DIR
 
 # enable indexing for Apache
 RUN sed -i "1s;^;Options +Indexes\n\n;" .htaccess
 
 # install dependencies
-RUN composer install --no-plugins --no-scripts
+RUN composer install --optimize-autoloader --no-interaction --no-progress
 
 # fix permissions
 RUN chmod -R 0775 /var/www/html \
